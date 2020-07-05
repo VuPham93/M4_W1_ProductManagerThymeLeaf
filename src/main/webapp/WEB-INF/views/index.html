@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head"></head>
+<body>
+<div class="container">
+    <h1>Products List</h1>
+    <form th:action="@{/product/find}">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="product name" aria-label="product name" aria-describedby="button-addon2" name="findingValue">
+            <div class="input-group-append">
+                <input class="btn btn-outline-secondary" type="submit" value="Find product">
+            </div>
+        </div>
+    </form>
+
+    <div>
+        <a type="button" class="btn btn-secondary" th:href="@{/product/create}">
+            Create new
+        </a>
+        <p></p>
+    </div>
+
+    <div class="notify">
+        <div th:if="${message}">
+            <span th:text="${message}"></span>
+        </div>
+    </div>
+
+    <div>
+        <table class="table table-light table-striped table-bordered table-hover" id="product">
+            <thead class="thead-dark" >
+            <tr>
+                <th scope="col">Serial</th>
+                <th scope="col">Name</th>
+                <th scope="col">Color</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+            </tr>
+            </thead>
+            <tr th:each="row,rowStat : ${products}">
+                <th scope="row">
+                    <a th:href="@{/product/{id}/view(id=${row.getSeries()})}">
+                        <p th:text="${row.getSeries()}"></p>
+                    </a>
+                </th>
+                <td>
+                    <a th:href="@{/product/{id}/view(id=${row.getSeries()})}">
+                        <p th:text="${row.getName()}"></p>
+                    </a>
+                </td>
+                <td th:text="${row.getColor()}"></td>
+                <td th:text="${row.getPrice()}"></td>
+                <td th:text="${row.getQuantity()}"></td>
+                <td><a th:href="@{/product/{id}/edit(id=${row.getSeries()})}"> edit </a></td>
+                <td><a th:href="@{/product/{id}/delete(id=${row.getSeries()})}"> delete </a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

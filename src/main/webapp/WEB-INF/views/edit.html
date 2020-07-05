@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head"></head>
+<body>
+<div class="container">
+    <h1>Update product</h1>
+    <div>
+        <p>
+            <a th:href="@{/}">Back to products list</a>
+        </p>
+    </div>
+
+    <form method="post" th:action="@{/product/update}" th:object="${product}">
+        <fieldset>
+            <legend>Product information</legend>
+            <table class="table table-light table-striped table-bordered table-hover">
+                <tr>
+                    <th scope="row">Series: </th>
+                    <td><input class="form-control" type="hidden" th:field="*{series}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Name: </th>
+                    <td><input class="form-control" type="text" th:field="*{name}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Color: </th>
+                    <td><input class="form-control" type="text" th:field="*{color}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Price: </th>
+                    <td><input class="form-control" type="text" th:field="*{price}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Quantity: </th>
+                    <td><input class="form-control" type="text" th:field="*{quantity}"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input class="btn btn-primary" type="submit" value="Update product"></td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+</div>
+</body>
+</html>
